@@ -7,6 +7,7 @@ import properties from "../properties.js";
 
 // Start Import Models
 
+import ClassModel from "../models/SMS_db/ClassModel";
 import StudentModel from "../models/SMS_db/StudentModel";
 import TeacherModel from "../models/SMS_db/TeacherModel";
 import UserModel from "../models/SMS_db/UserModel";
@@ -25,6 +26,7 @@ class Database {
 
     // Start Init Models
 
+		ClassModel.init();
 		StudentModel.init();
 		TeacherModel.init();
 		UserModel.init();

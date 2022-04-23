@@ -64,6 +64,10 @@ import { Student } from '../../domain/sms_db/student';
 		//EXTERNAL RELATIONS
 		_Student: {
 			type: Schema.ObjectId,
+			ref : "Class"
+		},
+		_Student: {
+			type: Schema.ObjectId,
 			ref : "User"
 		},
 		_Student: {
@@ -146,6 +150,43 @@ export class StudentBaseService {
             .pipe(
                 map(response => response)
             );
+    }
+
+    /**
+    * StudentService.findBy_Teacher
+    *   @description CRUD ACTION findBy_Teacher
+    *   @param Objectid key Id of model to search for
+    *
+    */
+    findBy_Teacher(id: string): Observable<Student[]> {
+        return this.http
+            .get<Student[]>(this.contextUrl + '/findBy_Teacher/' + id)
+            .pipe(
+                map(response => response)
+            );
+    }
+
+    /**
+    * StudentService.get
+    *   @description CRUD ACTION get
+    *   @param ObjectId id Id resource
+    *
+    */
+    get(id: string): Observable<Student> {
+        return this.http
+            .get<Student>(this.contextUrl + '/' + id)
+            .pipe(map(data => data));
+    }
+
+    /**
+    * StudentService.list
+    *   @description CRUD ACTION list
+    *
+    */
+    list(): Observable<Student[]> {
+        return this.http
+            .get<Student[]>(this.contextUrl)
+            .pipe(map(data => data));
     }
 
     /**

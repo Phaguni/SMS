@@ -27,6 +27,7 @@ import SecurityController from "../controllers/SecurityController";
 import Database_SMS_db from "./Database_SMS_db.js";
 
 // Controllers
+import ClassController from "../controllers/SMS_db/ClassController";
 import StudentController from "../controllers/SMS_db/StudentController";
 import TeacherController from "../controllers/SMS_db/TeacherController";
 import UserController from "../controllers/SMS_db/UserController";
@@ -110,6 +111,7 @@ class Server {
     SecurityController.init(router);
 
     // Start Init Controllers
+		ClassController.init(router);
 		StudentController.init(router);
 		TeacherController.init(router);
 		UserController.init(router);

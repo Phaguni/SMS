@@ -32,6 +32,9 @@ const generatedControllers = {
     router.get(baseUrl + "/findByClass/:key", authorize([]), StudentController.findByClass);
     router.get(baseUrl + "/findByFirstName/:key", authorize([]), StudentController.findByFirstName);
     router.get(baseUrl + "/findByRollNumber/:key", authorize([]), StudentController.findByRollNumber);
+    router.get(baseUrl + "/findBy_Teacher/:key", authorize([]), StudentController.findBy_Teacher);
+    router.get(baseUrl + "/:id", authorize([]), StudentController.get);
+    router.get(baseUrl + "", authorize([]), StudentController.list);
     router.post(baseUrl + "/:id", authorize(["ADMIN"]), StudentController.update);
   },
 
@@ -113,6 +116,54 @@ const generatedControllers = {
       res.status(safeErr.status).json(safeErr);
     }
   },
+  
+  /**
+  * StudentModel.findBy_Teacher
+  *   @description CRUD ACTION findBy_Teacher
+  *   @param Objectid key Id of model to search for
+  *
+  */
+  findBy_Teacher: async (req, res) => {
+    try {
+      const result = await StudentModel.findBy_Teacher(req.params.key);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
+  /**
+  * StudentModel.get
+  *   @description CRUD ACTION get
+  *   @param ObjectId id Id resource
+  *
+  */
+  get: async (req, res) => {
+    try {
+      const result = await StudentModel.get(req.params.id);
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
+  /**
+  * StudentModel.list
+  *   @description CRUD ACTION list
+  *
+  */
+  list: async (req, res) => {
+    try {
+      const result = await StudentModel.list();
+      res.json(result);
+    } catch (err) {
+      const safeErr = ErrorManager.getSafeError(err);
+      res.status(safeErr.status).json(safeErr);
+    }
+  },
+  
   
   /**
   * StudentModel.update

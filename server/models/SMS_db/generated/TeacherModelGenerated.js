@@ -59,6 +59,10 @@ const generatedModel = {
       },
       _Teacher: {
         type: Schema.ObjectId,
+        ref: "Class"
+      },
+      _Teacher: {
+        type: Schema.ObjectId,
         ref: "User"
       },
       */
@@ -127,12 +131,31 @@ const generatedModel = {
   },
   
   /**
+  * TeacherModel.get
+  *   @description CRUD ACTION get
+  *   @param ObjectId id Id resource
+  *
+  */
+  async get(id) {
+    return await generatedModel.model.findOne({ _id : id });
+  },
+  
+  /**
   * TeacherModel.get_Student
   *   @description CRUD ACTION get_Student
   *
   */
   async get_Student(id) {
     return await generatedModel.model.findOne({ _id : id}).populate("_Student")
+  },
+  
+  /**
+  * TeacherModel.list
+  *   @description CRUD ACTION list
+  *
+  */
+  async list() {
+    return await generatedModel.model.find();
   },
   
   /**
